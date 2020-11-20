@@ -12,7 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
+    //use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
@@ -24,7 +24,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'nickname',
         'email',
         'password',
     ];
