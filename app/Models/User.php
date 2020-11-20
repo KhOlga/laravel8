@@ -60,4 +60,15 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get the user's name.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getNameAttribute()
+    {
+        return "$this->first_name $this->last_name";
+    }
 }
