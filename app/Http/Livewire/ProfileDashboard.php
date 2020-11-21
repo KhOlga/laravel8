@@ -12,6 +12,10 @@ class ProfileDashboard extends Component
     public $loud = false;
     public $greeting = 'Good morning';
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
+     */
     public function render(Request $request)
     {
         $user = $request->user();
