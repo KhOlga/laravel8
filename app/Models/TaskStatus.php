@@ -10,7 +10,7 @@ class TaskStatus extends Model
 {
     use HasFactory;
 
-    public $table = 'statuses';
+    public $table = 'task_statuses';
 
     public $timestamps = false;
 

@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    public const HOME = '/profile';
 
     /**
      * The path to the "home" route for your application.
@@ -57,6 +57,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('web')
                 ->namespace($this->namespace . '\Admin')
                 ->group(base_path('routes/admin.php'));
+
+            Route::prefix('profile')
+                ->as('profile.')
+                ->middleware('web')
+                ->namespace($this->namespace . '\Profile')
+                ->group(base_path('routes/profile.php'));
 
             Route::middleware('web')
                 ->namespace($this->namespace)
