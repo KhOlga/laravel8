@@ -61,6 +61,11 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function tasks()
+    {
+        return $this->hasMany('App\Models\Task', 'user_id');
+    }
+
     /**
      * Get the user's name.
      *

@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'DashboardController@index')
     ->name('dashboard')
     ->middleware(['auth', 'verified']);
+
+Route::group(['prefix' => 'tasks', 'as' => 'tasks.'], function () {
+    Route::get('/', 'TaskController@index')->name('index');
+    Route::get('/create', 'TaskController@create')->name('create');
+    Route::post('/store', 'TaskController@store')->name('store');
+});
