@@ -20,5 +20,13 @@ Route::get('/', 'DashboardController@index')
 Route::group(['prefix' => 'tasks', 'as' => 'tasks.'], function () {
     Route::get('/', 'TaskController@index')->name('index');
     Route::get('/create', 'TaskController@create')->name('create');
-    Route::post('/store', 'TaskController@store')->name('store');
+    Route::post('/create', 'TaskController@store')->name('store');
+    Route::get('/{task:title}', 'TaskController@show')->name('show');
+    /*Route::get('/{task:title}', function (App\Models\Task $task) {
+        return $task;
+    });*/
+});
+
+Route::fallback(function () {
+	return abort(404);
 });

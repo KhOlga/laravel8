@@ -1,4 +1,4 @@
 <div>
-    Hello {{ $name }}!
+    Hello {{ $name ?? null }}!
 </div>
 

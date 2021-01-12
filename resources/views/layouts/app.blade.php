@@ -17,6 +17,29 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+        <style>
+
+            html, body {
+                height: 100%;
+                background: red ;
+            }
+
+            .tasks-list > .item:first-child {
+                background-color: #1a202c;
+                color: #ffffff;
+                font-weight: bold;
+            }
+
+            .tasks-list > .item {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, 1fr);
+                grid-template-rows: auto;
+                grid-gap: 10px;
+                background-color: #a0aec0;
+            }
+        </style>
+
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
