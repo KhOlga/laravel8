@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\EnsureTokenIsValid;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'DashboardController@index')
     ->name('dashboard')
-    ->middleware(['auth', 'verified']);
+    ->middleware(['auth', 'verified'])
+	->withoutMiddleware([EnsureTokenIsValid::class]);
 
 Route::group(['prefix' => 'tasks', 'as' => 'tasks.'], function () {
     Route::get('/', 'TaskController@index')->name('index');

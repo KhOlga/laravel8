@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Middleware\EnsureTokenIsValid;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->name('welcome');
+Route::view('/', 'welcome')->name('welcome')
+	->withoutMiddleware([EnsureTokenIsValid::class]);
 
 Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+    	return view('dashboard');
+	})->name('dashboard')->withoutMiddleware([EnsureTokenIsValid::class]);
 
 
 Route::fallback(function () {
