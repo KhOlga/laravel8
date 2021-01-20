@@ -15,8 +15,13 @@ class DashboardController extends Controller
     {
         $user = $request->user();
 
+		$token = $request->session()->token();
+		$csrf_token = csrf_token();
+
         return view('profile.dashboard', [
-            'user' => $user
+            'user' => $user,
+			'token' => $token,
+			'csrf_token' => $csrf_token
         ]);
     }
 

@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\EnsureTokenIsValid;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +17,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'DashboardController@index')
     ->name('dashboard')
-    ->middleware(['auth', 'verified']);
+    ->middleware(['auth', 'verified'])
+	->withoutMiddleware([EnsureTokenIsValid::class]);
 
 Route::group(['prefix' => 'tasks', 'as' => 'tasks.'], function () {
     Route::get('/', 'TaskController@index')->name('index');
     Route::get('/create', 'TaskController@create')->name('create');
-    Route::post('/store', 'TaskController@store')->name('store');
+    Route::post('/create', 'TaskController@store')->name('store');
+    Route::get('/{task:title}', 'TaskController@show')->name('show');
+    /*Route::get('/{task:title}', function (App\Models\Task $task) {
+        return $task;
+    });*/
+});
+
+Route::group(['prefix' => 'personal-info', 'as' => 'personal_info.'], function () {
+	Route::get('/', 'UserController@show')->name('show');
+});
+
+Route::fallback(function () {
+	return abort(404);
 });

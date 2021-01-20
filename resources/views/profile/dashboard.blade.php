@@ -10,6 +10,12 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 @livewire('profile-dashboard')
             </div>
+            <div>
+                {{-- EXAMPLE INFORMATION --}}
+                <p>{{ $token }}</p>
+                <p>{{ $csrf_token }}</p>
+
+            </div>
         </div>
     </div>
 </x-app-layout>

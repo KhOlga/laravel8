@@ -25,6 +25,11 @@ class Task extends Model
         'updated_at'
     ];
 
+	//relationship
+	public function comments()
+	{
+		return $this->belongsTo(Comment::class);
+	}
 
     public function user()
     {
@@ -33,6 +38,6 @@ class Task extends Model
 
     public function status()
     {
-        return $this->belongsTo(Status::class);
+        return $this->belongsTo(TaskStatus::class);
     }
 }

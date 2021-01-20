@@ -18,6 +18,7 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
+
         $tasks = Task::where('user_id', $user->id)->get();
 
         return view('profile.tasks.index', [
@@ -77,7 +78,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return view('profile.tasks.show', ['task' => $task]);
     }
 
     /**
