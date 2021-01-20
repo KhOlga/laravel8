@@ -30,6 +30,10 @@ Route::group(['prefix' => 'tasks', 'as' => 'tasks.'], function () {
     });*/
 });
 
+Route::group(['prefix' => 'personal-info', 'as' => 'personal_info.'], function () {
+	Route::get('/', 'UserController@show')->name('show');
+});
+
 Route::fallback(function () {
 	return abort(404);
 });

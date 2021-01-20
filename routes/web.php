@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Middleware\EnsureTokenIsValid;
 
@@ -17,10 +18,22 @@ use \App\Http\Middleware\EnsureTokenIsValid;
 Route::view('/', 'welcome')->name('welcome')
 	->withoutMiddleware([EnsureTokenIsValid::class]);
 
-Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
-    	return view('dashboard');
-	})->name('dashboard')->withoutMiddleware([EnsureTokenIsValid::class]);
+//Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
+//    	return view('dashboard');
+//	})->name('dashboard')->withoutMiddleware([EnsureTokenIsValid::class]);
 
+//TODO: add Route::get('/photos/popular', [PhotoController::class, 'popular']);
+Route::resources([
+	'photos' => 'PhotoController',
+	'teams' => 'TeamController'
+]);
+
+Route::resource('tasks', 'TaskController');
+Route::resource('tasks.comments', 'TaskCommentController')
+	->scoped([
+		'comment' => 'slug',
+	]);
+Route::resource('tasks.comments', 'CommentController')->shallow();
 
 Route::fallback(function () {
 	return view('errors.404');

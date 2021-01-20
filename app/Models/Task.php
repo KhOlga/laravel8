@@ -25,6 +25,11 @@ class Task extends Model
         'updated_at'
     ];
 
+	//relationship
+	public function comments()
+	{
+		return $this->belongsTo(Comment::class);
+	}
 
     public function user()
     {
