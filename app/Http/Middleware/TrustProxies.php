@@ -2,22 +2,26 @@
 
 namespace App\Http\Middleware;
 
-use Fideloper\Proxy\TrustProxies as Middleware;
+use Closure;
+use App\Models\Proxy;
 use Illuminate\Http\Request;
 
-class TrustProxies extends Middleware
+class TrustProxies
 {
-    /**
-     * The trusted proxies for this application.
-     *
-     * @var array|string|null
-     */
-    protected $proxies;
+	/**
+	 * Handle an incoming request.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \Closure  $next
+	 * @return mixed
+	 */
+	public function handle(Request $request, Closure $next)
+	{
+		if (in_array($request->ip(), Proxy::getIpAddresses()) !== true) {
+			return response()
+				->view('errors.403'); // TODO: add ipAddress to log
+		}
 
-    /**
-     * The headers that should be used to detect proxies.
-     *
-     * @var int
-     */
-    protected $headers = Request::HEADER_X_FORWARDED_ALL;
+		return $next($request);
+	}
 }
