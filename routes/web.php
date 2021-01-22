@@ -18,10 +18,6 @@ use \App\Http\Middleware\EnsureTokenIsValid;
 Route::view('/', 'welcome')->name('welcome')
 	->withoutMiddleware([EnsureTokenIsValid::class]);
 
-//Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
-//    	return view('dashboard');
-//	})->name('dashboard')->withoutMiddleware([EnsureTokenIsValid::class]);
-
 //TODO: add Route::get('/photos/popular', [PhotoController::class, 'popular']);
 Route::resources([
 	'photos' => 'PhotoController',
