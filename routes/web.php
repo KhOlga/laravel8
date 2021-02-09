@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PhotoController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Middleware\EnsureTokenIsValid;
 
@@ -14,6 +15,10 @@ use \App\Http\Middleware\EnsureTokenIsValid;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/greeting', function () {
+	//
+});
 
 Route::view('/', 'welcome')->name('welcome')
 	->withoutMiddleware([EnsureTokenIsValid::class]);

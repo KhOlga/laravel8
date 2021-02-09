@@ -22,7 +22,7 @@ class TrustProxies
 
 			Log::info(now() . ' someone tried to access to application from ' . $request->ip() . ' IP address');
 			return response()
-				->view('errors.403'); // TODO: add ipAddress to log
+				->view('errors.403');
 		}
 
 		return $next($request);
